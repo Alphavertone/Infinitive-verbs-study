@@ -1,3 +1,4 @@
 /.venv
 /french-nltk.py
 /tokenizers
+output.csv
