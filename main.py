@@ -2,19 +2,19 @@
 import text_collector
 import text_handler
 
-url = "https://www.lefigaro.fr/"
+url = "https://www.lefigaro.fr/secteur/high-tech"
+
+links = []
 
 links = text_collector.get_urls(url)
-
-analyzed_data = []
 
 for link in links:
     content = text_collector.scrape_text(link)
     sentence = text_handler.handle_infinitives(content)
-    analyzed_sentence = {
-        "link": link,
-        "sentence": sentence
+    analyzed_data = {
+        'link': link,
+        'content': sentence
     }
-    analyzed_data.append(analyzed_sentence)
+    text_handler.save_results(analyzed_data)
 
-text_handler.save_results(analyzed_data)
+print("All infinitives were found!")

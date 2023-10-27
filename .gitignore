@@ -2,3 +2,5 @@
 /french-nltk.py
 /tokenizers
 output.csv
+output.xlsx
+/__pycache__

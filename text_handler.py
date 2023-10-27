@@ -2,7 +2,6 @@ import spacy
 import pandas as pd
 from termcolor import colored
 
-
 def handle_infinitives(text):
     # Load the French language model
     nlp = spacy.load('fr_core_news_sm')
@@ -23,12 +22,20 @@ def handle_infinitives(text):
             sentences_with_infinitives.append(' '.join(sentence))
     return sentences_with_infinitives
 
+import pandas as pd
 
 def save_results(analyzed_data):
+    # Load existing data from the Excel file, if it exists
+    try:
+        existing_data = pd.read_excel('output.xlsx')
+    except FileNotFoundError:
+        existing_data = pd.DataFrame()
+
     # Create a DataFrame from the analyzed_data
-    df = pd.DataFrame(analyzed_data, columns=['link', 'sentence'])
+    new_data = pd.DataFrame(analyzed_data, columns=['link', 'content'])
 
-    # Save DataFrame to Excel file
-    df.to_excel('output.xlsx', index=False)
+    # Append the new data to the existing data
+    combined_data = existing_data._append(new_data, ignore_index=True)
 
-
+    # Save the combined data to the Excel file
+    combined_data.to_excel('output.xlsx', index=False)
