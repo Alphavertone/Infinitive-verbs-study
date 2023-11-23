@@ -16,7 +16,7 @@ def handle_infinitives(text):
             sentence = []
             for token in sent:
                 if token in infinitives:
-                    sentence.append(f"**{token.text}**")
+                    sentence.append(f"~~{token.text}~~")
                 else:
                     sentence.append(token.text)
             sentences_with_infinitives.append(' '.join(sentence))
